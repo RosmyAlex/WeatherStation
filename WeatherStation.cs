@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeatherStation.InterceptorArchPattern;
 
 namespace WeatherStation
 {
@@ -22,6 +23,10 @@ namespace WeatherStation
 
             weatherData.RemoveObserver(forecastDisplay);
             weatherData.SetMeasurements(62, 90, 28.1f);
+        }
+        void MeasurementUpdateEvent(float temperature, float humidity, float pressure)
+        {
+            var contextObject = new ContextObject(temperature, humidity, pressure);
         }
     }
 }

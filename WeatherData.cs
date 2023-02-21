@@ -24,7 +24,7 @@ namespace WeatherStation
         {
             foreach (var observer in Observers)
             {
-                observer.update(temperature, humidity, pressure);
+                observer.Update(temperature, humidity, pressure);
             }
         }
 

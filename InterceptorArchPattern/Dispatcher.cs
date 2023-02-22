@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WeatherStation.InterceptorArchPattern
 {
-    internal class Dispatcher
+    internal class Dispatcher : IDispatcher
     {
         private IList<IInterceptor> interceptors;
         public IList<IInterceptor> Interceptors

@@ -11,20 +11,20 @@ namespace WeatherStation.InterceptorArchPattern
         private float lastSetTemperature;
         private float lastSetPressure;
         private float lastSetHumidity;
-        private Dispatcher dispatcher;
-        private Dispatcher Dispatcher => dispatcher;
+        private IDispatcher dispatcher;
+        private IDispatcher Dispatcher => dispatcher;
 
-        public WeatherStationFramework(Dispatcher dispatcher)
+        public WeatherStationFramework(IDispatcher dispatcher)
         {
             this.dispatcher = dispatcher;
         }
 
-        public void UpdateWeatherParameters(float temperature, float pressure, float humidity)
+        public void UpdateWeatherFactors(float temperature, float pressure, float humidity)
         {
+            AnalyseReadingDifference(temperature, pressure, humidity);
             lastSetTemperature = temperature;
             lastSetPressure = pressure;
             lastSetHumidity = humidity;
-            AnalyseReadingDifference(temperature, pressure, humidity);
 
             ContextObject contextObject = new ContextObject(temperature, pressure, humidity);
             Dispatcher.Dispatch(contextObject);

@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WeatherStation.InterceptorArchPattern
+﻿namespace WeatherStation.InterceptorArchPattern
 {
     internal class WeatherStation
     {
-        private static Dispatcher dispatcher;
-        private IInterceptor currentDisplay;
-        private IInterceptor statisticsDisplay;
-        private static IInterceptor forecastDisplay;
+        private static IDispatcher dispatcher;
         private static WeatherStationFramework weatherStationFramework;
-        public static Dispatcher Dispatcher
+        private static IDispatcher Dispatcher
         {
             get 
             {
@@ -37,13 +28,11 @@ namespace WeatherStation.InterceptorArchPattern
         }
         public WeatherStation()
         {
-            currentDisplay = new CurrentConditionDisplayInterceptor();
-            statisticsDisplay = new StatisticsDisplayInterceptor();
-            forecastDisplay = new ForecastDisplayInterceptor();
-            Dispatcher.Register(currentDisplay);
-            Dispatcher.Register(statisticsDisplay);
-            Dispatcher.Register(forecastDisplay);
+            RegisterDisplay(DisplayType.Statistics);
+            RegisterDisplay(DisplayType.Forecast);
+            RegisterDisplay(DisplayType.CurrentCondition);
         }
+
         public static void Main(string[] args)
         {
             MeasurementUpdateEvent(80, 65, 30.4f);
@@ -55,7 +44,12 @@ namespace WeatherStation.InterceptorArchPattern
         }
         private static void MeasurementUpdateEvent(float temperature, float humidity, float pressure)
         {
-            WeatherStationFramework.UpdateWeatherParameters(temperature, humidity, pressure);
+            WeatherStationFramework.UpdateWeatherFactors(temperature, humidity, pressure);
+        }
+        private void RegisterDisplay(DisplayType displayType)
+        {
+            IInterceptor displayInterceptor = InterceptorFactory.CreateInterceptor(DisplayType.CurrentCondition);
+            Dispatcher.Register(displayInterceptor);
         }
     }
 }

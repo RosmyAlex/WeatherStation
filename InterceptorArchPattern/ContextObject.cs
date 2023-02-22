@@ -9,17 +9,16 @@ namespace WeatherStation.InterceptorArchPattern
     internal class ContextObject
     {
         private float temperature;
-        private float humidity;
         private float pressure;
-        public ContextObject(float temperature, float humidity, float pressure)
+        private float humidity;
+        public float Temperature => temperature;
+        public float Pressure => pressure;
+        public float Humidity => humidity;
+        public ContextObject(float temperature, float pressure, float humidity)
         {
-            this.temperature = temperature;
-            this.humidity = humidity;
-            this.pressure = pressure;
+            this.temperature=temperature;
+            this.pressure=pressure;
+            this.humidity=humidity;
         }
-
-        internal float Temperature { get { return temperature;} }
-        internal float Humidity { get { return humidity;} }
-        internal float Pressure { get { return pressure; } }
     }
 }

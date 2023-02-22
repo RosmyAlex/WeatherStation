@@ -9,7 +9,7 @@ namespace WeatherStation
 {
     internal class WeatherStation
     {
-        public static void main(String[] args)
+        public static void Main(string[] args)
         {
             WeatherData weatherData = new WeatherData();
 

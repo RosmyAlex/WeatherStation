@@ -1,0 +1,15 @@
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\WeatherStation.csproj.AssemblyReference.cache
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\WeatherStation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\WeatherStation.AssemblyInfoInputs.cache
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\WeatherStation.AssemblyInfo.cs
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\WeatherStation.csproj.CoreCompileInputs.cache
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\bin\Debug\net6.0\WeatherStation.exe
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\bin\Debug\net6.0\WeatherStation.deps.json
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\bin\Debug\net6.0\WeatherStation.runtimeconfig.json
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\bin\Debug\net6.0\WeatherStation.dll
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\bin\Debug\net6.0\WeatherStation.pdb
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\WeatherStation.dll
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\refint\WeatherStation.dll
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\WeatherStation.pdb
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\WeatherStation.genruntimeconfig.cache
+C:\Users\ROSMY\OneDrive\Rosmy\Learn\.net\WeatherStation\obj\Debug\net6.0\ref\WeatherStation.dll

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherStation.InterceptorArchPattern;
+using WeatherStation.InterceptorArchPattern.WeatherUpdateDispatchers;
 
 namespace WeatherStation
 {
@@ -12,7 +12,7 @@ namespace WeatherStation
         private float temperature;
         private float humidity;
         private WeatherData weatherData;
-        private Dispatcher dispatcher;
+        private TempUpdateDispatcher dispatcher;
 
         public CurrentConditionDisplayObserver(WeatherData weatherData)
         {

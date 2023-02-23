@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeatherStation.InterceptorArchPattern.WeatherFactorsContextObjects;
 
 namespace WeatherStation.InterceptorArchPattern
 {
     internal class StatisticsDisplayInterceptor : IInterceptor
     {
-        public void OnWeatherParamsChanged(ContextObject contextObject)
+        public void OnWeatherParamsChanged(TemperatureContextObject contextObject)
         {
             float maxTemp = 0.0f;
             float minTemp = 200;

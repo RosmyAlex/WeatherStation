@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WeatherStation.InterceptorArchPattern.WeatherFactorsContextObjects;
 
 namespace WeatherStation.InterceptorArchPattern
 {
@@ -12,18 +8,27 @@ namespace WeatherStation.InterceptorArchPattern
         private float lastPressure;
         private float humidity;
         private float temperature;
-        public void OnWeatherParamsChanged(ContextObject contextObject)
+       
+        public void OnTemperatureChanged(IContextObject contextObject)
+        {
+            temperature = contextObject.Temperature;
+            Console.WriteLine("Forecast: ");
+            DisplayTemperatureForecast();
+        }
+        public void OnPressureChanged(IContextObject contextObject)
         {
             lastPressure = currentPressure;
             currentPressure = contextObject.Pressure;
-            humidity = contextObject.Humidity;
-            temperature = contextObject.Temperature;
             Console.WriteLine("Forecast: ");
-            DisplayHumidityForecast();
-            DisplayTemperatureForecast();
             DisplayPressureForecast();
         }
-        public void DisplayHumidityForecast()
+        public void OnHumidityChanged(IContextObject contextObject)
+        {
+            humidity = contextObject.Humidity;
+            Console.WriteLine("Forecast: ");
+            DisplayHumidityForecast();
+        }
+        private void DisplayHumidityForecast()
         {
             if (humidity>50)
             {

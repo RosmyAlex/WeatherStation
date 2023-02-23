@@ -26,7 +26,7 @@ namespace WeatherStation
         }
         void MeasurementUpdateEvent(float temperature, float humidity, float pressure)
         {
-            var contextObject = new ContextObject(temperature, humidity, pressure);
+            var contextObject = new TemperatureContextObject(temperature, humidity, pressure);
         }
     }
 }

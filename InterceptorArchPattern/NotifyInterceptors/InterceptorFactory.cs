@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeatherStation.InterceptorArchPattern
+namespace WeatherStation.InterceptorArchPattern.NotifyInterceptors
 {
     internal class InterceptorFactory
     {
-        internal static IInterceptor CreateInterceptor(DisplayType displayType)
+        internal static INotifyInterceptor CreateInterceptor(DisplayType displayType)
         {
-            IInterceptor interceptor = null;
+            INotifyInterceptor interceptor = null;
             switch (displayType)
             {
                 case DisplayType.CurrentCondition:
-                    interceptor = new CurrentConditionDisplayInterceptor();
+                    interceptor = new CurrentConditionNotifyInterceptor();
                     break;
                 case DisplayType.Statistics:
-                    interceptor = new StatisticsDisplayInterceptor();
+                    interceptor = new StatisticsNotifyInterceptor();
                     break;
                 case DisplayType.Forecast:
-                    interceptor = new ForecastDisplayInterceptor();
+                    interceptor = new ForecastNotifyInterceptor();
                     break;
             }
             return interceptor;

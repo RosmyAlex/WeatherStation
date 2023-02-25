@@ -3,48 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeatherStation.InterceptorArchPattern.WeatherFactorsContextObjects;
+using WeatherStation.InterceptorArchPattern.NotifyInterceptors;
 
 namespace WeatherStation.InterceptorArchPattern.WeatherUpdateDispatchers
 {
-    internal class UpdateDispatcher : IDispatcher
+    public class UpdateDispatcher : IDispatcher
     {
-        private IList<IInterceptor> interceptors;
-        private IList<IInterceptor> Interceptors
+        private IList<INotifyInterceptor> interceptors;
+        private IList<INotifyInterceptor> Interceptors
         {
             get
             {
-                if (interceptors == null) { interceptors = new List<IInterceptor>(); }
+                if (interceptors == null) { interceptors = new List<INotifyInterceptor>(); }
                 return interceptors;
             }
         }
 
-        public void TemperatureUpdate(IContextObject contextObject)
+        public void TemperatureUpdate(WeatherFactorContextObject contextObject)
         {
-            foreach (var interceptor in interceptors)
+            foreach (var interceptor in Interceptors)
             {
                 interceptor.OnTemperatureChanged(contextObject);
             }
         }
-        public void PressureUpdate(IContextObject contextObject)
+        public void PressureUpdate(WeatherFactorContextObject contextObject)
         {
             foreach (var interceptor in interceptors)
             {
-                interceptor.OnTemperatureChanged(contextObject);
+                interceptor.OnPressureChanged(contextObject);
             }
         }
-        public void HumidityUpdate(IContextObject contextObject)
+        public void HumidityUpdate(WeatherFactorContextObject contextObject)
         {
             foreach (var interceptor in interceptors)
             {
-                interceptor.OnTemperatureChanged(contextObject);
+                interceptor.OnHumidityChanged(contextObject);
             }
         }
-        public void Register(IInterceptor interceptor)
+        public void Register(INotifyInterceptor interceptor)
         {
             Interceptors.Add(interceptor);
         }
-        public void Remove(IInterceptor interceptor)
+        public void Remove(INotifyInterceptor interceptor)
         {
             Interceptors.Remove(interceptor);
         }

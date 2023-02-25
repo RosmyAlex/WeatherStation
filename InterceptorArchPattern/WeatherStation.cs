@@ -1,30 +1,26 @@
-﻿using WeatherStation.InterceptorArchPattern.WeatherUpdateDispatchers;
+﻿using WeatherStation.InterceptorArchPattern.NotifyInterceptors;
+using WeatherStation.InterceptorArchPattern.WeatherUpdateDispatchers;
 
 namespace WeatherStation.InterceptorArchPattern
 {
     internal class WeatherStation
     {
-        private static IDispatcher dispatcher;
-        private static WeatherStationFramework weatherStationFramework;
-        public WeatherStation()
-        {
-            RegisterDisplay(DisplayType.Statistics);
-            RegisterDisplay(DisplayType.Forecast);
-            RegisterDisplay(DisplayType.CurrentCondition);
-        }
-        public static WeatherStationFramework WeatherStationFramework
+        private static WeatherStationManager weatherStationManager;
+        public static WeatherStationManager WeatherStationManager
         {
             get
             {
-                if (weatherStationFramework == null)
+                if (weatherStationManager == null)
                 {
-                    weatherStationFramework = new WeatherStationFramework();
+                    weatherStationManager = new WeatherStationManager();
                 }
-                return weatherStationFramework;
+                return weatherStationManager;
             }
         }
         public static void Main(string[] args)
         {
+            RegisterDisplay();
+
             TemperatureUpdateEvent(80);
             PressureUpdateEvent(82);
             HumidityUpdateEvent(78);
@@ -32,22 +28,28 @@ namespace WeatherStation.InterceptorArchPattern
            // Dispatcher.Remove(forecastDisplay);
             //MeasurementUpdateEvent(62, 90, 28.1f);
         }
+        private static void RegisterDisplay()
+        {
+            RegisterDisplay(DisplayType.Statistics);
+            RegisterDisplay(DisplayType.Forecast);
+            RegisterDisplay(DisplayType.CurrentCondition);
+        }
         private static void TemperatureUpdateEvent(float temperature)
         {
-            WeatherStationFramework.UpdateTemperature(temperature);
+            WeatherStationManager.UpdateTemperature(temperature);
         }
         private static void PressureUpdateEvent(float pressure)
         {
-            WeatherStationFramework.UpdatePressure(pressure);
+            WeatherStationManager.UpdatePressure(pressure);
         }
         private static void HumidityUpdateEvent(float humidity)
         {
-            WeatherStationFramework.UpdateHumidity(humidity);
+            WeatherStationManager.UpdateHumidity(humidity);
         }
         private static void RegisterDisplay(DisplayType displayType)
         {
-            IInterceptor displayInterceptor = InterceptorFactory.CreateInterceptor(displayType);
-            WeatherStationFramework.RegisterInterceptor(displayInterceptor);
+            INotifyInterceptor displayInterceptor = InterceptorFactory.CreateInterceptor(displayType);
+            WeatherStationManager.RegisterInterceptor(displayInterceptor);
         }
     }
 }

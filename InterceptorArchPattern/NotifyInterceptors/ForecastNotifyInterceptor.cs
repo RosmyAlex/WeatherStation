@@ -1,36 +1,35 @@
-﻿using WeatherStation.InterceptorArchPattern.WeatherFactorsContextObjects;
-
-namespace WeatherStation.InterceptorArchPattern
+﻿
+namespace WeatherStation.InterceptorArchPattern.NotifyInterceptors
 {
-    internal class ForecastDisplayInterceptor : IInterceptor
+    internal class ForecastNotifyInterceptor : INotifyInterceptor
     {
-        private float currentPressure = 29.92f;
-        private float lastPressure;
-        private float humidity;
-        private float temperature;
-       
-        public void OnTemperatureChanged(IContextObject contextObject)
+        private float? currentPressure = 29.92f;
+        private float? lastPressure;
+        private float? humidity;
+        private float? temperature;
+
+        public void OnTemperatureChanged(WeatherFactorContextObject contextObject)
         {
-            temperature = contextObject.Temperature;
+            temperature = contextObject.WeatherFactorReading;
             Console.WriteLine("Forecast: ");
-            DisplayTemperatureForecast();
+            EvaluateAndDisplayTemperatureForecast();
         }
-        public void OnPressureChanged(IContextObject contextObject)
+        public void OnPressureChanged(WeatherFactorContextObject contextObject)
         {
             lastPressure = currentPressure;
-            currentPressure = contextObject.Pressure;
+            currentPressure = contextObject.WeatherFactorReading;
             Console.WriteLine("Forecast: ");
-            DisplayPressureForecast();
+            EvaluateAndDisplayPressureForecast();
         }
-        public void OnHumidityChanged(IContextObject contextObject)
+        public void OnHumidityChanged(WeatherFactorContextObject contextObject)
         {
-            humidity = contextObject.Humidity;
+            humidity = contextObject.WeatherFactorReading;
             Console.WriteLine("Forecast: ");
-            DisplayHumidityForecast();
+            EvaluateAndDisplayHumidityForecast();
         }
-        private void DisplayHumidityForecast()
+        private void EvaluateAndDisplayHumidityForecast()
         {
-            if (humidity>50)
+            if (humidity > 50)
             {
                 Console.WriteLine("Ideal humidity for health and comfort");
             }
@@ -39,9 +38,9 @@ namespace WeatherStation.InterceptorArchPattern
                 Console.WriteLine("Not an Ideal humidity for health and comfort");
             }
         }
-        private void DisplayTemperatureForecast()
+        private void EvaluateAndDisplayTemperatureForecast()
         {
-            if (temperature>30)
+            if (temperature > 30)
             {
                 Console.WriteLine("Weather is sunny");
             }
@@ -50,7 +49,7 @@ namespace WeatherStation.InterceptorArchPattern
                 Console.WriteLine("Weather is pleasant");
             }
         }
-        private void DisplayPressureForecast()
+        private void EvaluateAndDisplayPressureForecast()
         {
             if (currentPressure > lastPressure)
             {

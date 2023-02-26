@@ -5,29 +5,16 @@ namespace WeatherStation.InterceptorArchPattern.NotifyInterceptors
     {
         private float? currentPressure = 29.92f;
         private float? lastPressure;
-        private float? humidity;
-        private float? temperature;
 
-        public void OnTemperatureChanged(WeatherFactorContextObject contextObject)
+        public bool OnReadingChanged(DataReadingContextObject contextObject)
         {
-            temperature = contextObject.WeatherFactorReading;
             Console.WriteLine("Forecast: ");
-            EvaluateAndDisplayTemperatureForecast();
+            EvaluateAndDisplayTemperatureForecast(contextObject.TemperatureReading);
+            EvaluateAndDisplayPressureForecast(contextObject.PressureReading);
+            EvaluateAndDisplayHumidityForecast(contextObject.HumidityReading);
+            return true;
         }
-        public void OnPressureChanged(WeatherFactorContextObject contextObject)
-        {
-            lastPressure = currentPressure;
-            currentPressure = contextObject.WeatherFactorReading;
-            Console.WriteLine("Forecast: ");
-            EvaluateAndDisplayPressureForecast();
-        }
-        public void OnHumidityChanged(WeatherFactorContextObject contextObject)
-        {
-            humidity = contextObject.WeatherFactorReading;
-            Console.WriteLine("Forecast: ");
-            EvaluateAndDisplayHumidityForecast();
-        }
-        private void EvaluateAndDisplayHumidityForecast()
+        private void EvaluateAndDisplayHumidityForecast(float humidity)
         {
             if (humidity > 50)
             {
@@ -38,7 +25,7 @@ namespace WeatherStation.InterceptorArchPattern.NotifyInterceptors
                 Console.WriteLine("Not an Ideal humidity for health and comfort");
             }
         }
-        private void EvaluateAndDisplayTemperatureForecast()
+        private void EvaluateAndDisplayTemperatureForecast(float temperature)
         {
             if (temperature > 30)
             {
@@ -49,8 +36,10 @@ namespace WeatherStation.InterceptorArchPattern.NotifyInterceptors
                 Console.WriteLine("Weather is pleasant");
             }
         }
-        private void EvaluateAndDisplayPressureForecast()
+        private void EvaluateAndDisplayPressureForecast(float pressure)
         {
+            lastPressure = currentPressure;
+            currentPressure = pressure;
             if (currentPressure > lastPressure)
             {
                 Console.WriteLine("Improving weather on the way!");

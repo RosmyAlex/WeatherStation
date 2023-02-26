@@ -20,13 +20,7 @@ namespace WeatherStation.InterceptorArchPattern
         public static void Main(string[] args)
         {
             RegisterDisplay();
-
-            TemperatureUpdateEvent(80);
-            PressureUpdateEvent(82);
-            HumidityUpdateEvent(78);
-
-           // Dispatcher.Remove(forecastDisplay);
-            //MeasurementUpdateEvent(62, 90, 28.1f);
+            SetReadingsEvent(80, 82, 78);
         }
         private static void RegisterDisplay()
         {
@@ -34,22 +28,14 @@ namespace WeatherStation.InterceptorArchPattern
             RegisterDisplay(DisplayType.Forecast);
             RegisterDisplay(DisplayType.CurrentCondition);
         }
-        private static void TemperatureUpdateEvent(float temperature)
-        {
-            WeatherStationManager.UpdateTemperature(temperature);
-        }
-        private static void PressureUpdateEvent(float pressure)
-        {
-            WeatherStationManager.UpdatePressure(pressure);
-        }
-        private static void HumidityUpdateEvent(float humidity)
-        {
-            WeatherStationManager.UpdateHumidity(humidity);
-        }
         private static void RegisterDisplay(DisplayType displayType)
         {
             INotifyInterceptor displayInterceptor = InterceptorFactory.CreateInterceptor(displayType);
             WeatherStationManager.RegisterInterceptor(displayInterceptor);
+        }
+        private static bool SetReadingsEvent(float temperature, float pressure, float humidity)
+        {
+            return WeatherStationManager.UpdateReading(temperature, pressure, humidity);
         }
     }
 }

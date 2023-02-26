@@ -23,21 +23,12 @@ namespace WeatherStation.InterceptorArchPattern
             }
         }
 
-        public void UpdateTemperature(float temperature)
+        public bool UpdateReading(float temperature, float pressureReading, float humidityReading)
         {
-            var contextObject = new WeatherFactorContextObject(temperature);
-            UpdateDispatcher?.TemperatureUpdate(contextObject);
+            var contextObject = new DataReadingContextObject(temperature,pressureReading,humidityReading);
+            return UpdateDispatcher.DataReadingUpdate(contextObject);
         }
-        public void UpdatePressure(float pressure)
-        {
-            var contextObject = new WeatherFactorContextObject(pressure);
-            UpdateDispatcher?.PressureUpdate(contextObject);
-        }
-        public void UpdateHumidity(float humidity)
-        {
-            var contextObject = new WeatherFactorContextObject(humidity);
-            UpdateDispatcher?.HumidityUpdate(contextObject);
-        }
+
         public void RegisterInterceptor(INotifyInterceptor interceptor)
         {
             UpdateDispatcher?.Register(interceptor);

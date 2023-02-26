@@ -19,26 +19,16 @@ namespace WeatherStation.InterceptorArchPattern.WeatherUpdateDispatchers
             }
         }
 
-        public void TemperatureUpdate(WeatherFactorContextObject contextObject)
+        public bool DataReadingUpdate(DataReadingContextObject dataReadingContextObject)
         {
             foreach (var interceptor in Interceptors)
             {
-                interceptor.OnTemperatureChanged(contextObject);
+                if(!interceptor.OnReadingChanged(dataReadingContextObject))
+                {
+                    return false;
+                }
             }
-        }
-        public void PressureUpdate(WeatherFactorContextObject contextObject)
-        {
-            foreach (var interceptor in interceptors)
-            {
-                interceptor.OnPressureChanged(contextObject);
-            }
-        }
-        public void HumidityUpdate(WeatherFactorContextObject contextObject)
-        {
-            foreach (var interceptor in interceptors)
-            {
-                interceptor.OnHumidityChanged(contextObject);
-            }
+            return true;
         }
         public void Register(INotifyInterceptor interceptor)
         {

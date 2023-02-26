@@ -9,9 +9,7 @@ namespace WeatherStation.InterceptorArchPattern.WeatherUpdateDispatchers
 {
     internal interface IDispatcher
     {
-        void TemperatureUpdate(WeatherFactorContextObject contextObject);
-        void PressureUpdate(WeatherFactorContextObject contextObject);
-        void HumidityUpdate(WeatherFactorContextObject contextObject);
+        bool DataReadingUpdate(DataReadingContextObject contextObject);
         void Register(INotifyInterceptor interceptor);
         void Remove(INotifyInterceptor interceptor);
     }
